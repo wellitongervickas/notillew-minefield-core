@@ -1,0 +1,17 @@
+{
+  "name": "notillew-minefield-core",
+  "version": "1.0.0",
+  "description": "A minefield javascript core",
+  "main": "dist/index.js",
+  "repository": "git@github.com:wellitongervickas/notillew-minefield-core.git",
+  "author": "welliton gervickas <wellitogervickas@gmail.com>",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules ./src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.56",
+    "typescript": "^3.9.7"
+  }
+}
