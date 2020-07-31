@@ -1,1 +1,2 @@
-# notillew-minefield-core
+# Notillew Minefield Core
+A Javascript Minefield core
