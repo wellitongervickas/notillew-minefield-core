@@ -4,6 +4,7 @@ import {
 } from './interfaces';
 
 import { generateLinesAndRows } from './linesAndRows';
+import { insertRandomMines } from './mines';
 
 const generate = (options: Options): Minefields => {
   const {
@@ -21,6 +22,8 @@ const generate = (options: Options): Minefields => {
   }
 
   let minefields = generateLinesAndRows(columns, rows);
+
+  minefields = insertRandomMines(minefields, mines);
 
   return minefields;
 };

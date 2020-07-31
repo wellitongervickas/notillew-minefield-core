@@ -1,23 +1,21 @@
 import {
+  generate,
+} from './generate';
+
+export {
   Options,
   Minefields,
   Columns,
   Rows,
 } from './interfaces';
 
-import { generateLinesAndRows } from './linesAndRows';
-
-import {
-  generate,
-} from './generate';
+export {
+  generateLinesAndRows,
+} from './linesAndRows';
 
 export {
-  Options,
-  Columns,
-  Rows,
-  Minefields,
-  generate,
-  generateLinesAndRows,
-}
+  insertRandomMines,
+} from './mines';
+
 
 export default generate;
