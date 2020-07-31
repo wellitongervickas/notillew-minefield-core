@@ -1,58 +1,29 @@
-type Minefields = number[][];
-type Rows = number;
-type Columns = number;
-type Mines = number;
+import {
+  Options,
+  Minefields,
+} from './interfaces';
 
-interface Options {
-  columns: Columns;
-  rows: Rows;
-  mines?: Mines;
-}
-
-const randomMinesPopulate = (minefield: Minefields, mines: number): Minefields => {
-  let remainingMines = mines;
-
-  return minefield.map(row => {
-    return row.map(column => {
-      if (Math.round(Math.random()) && remainingMines > 0) {
-        column = -1;
-        remainingMines -= 1;
-      }
-
-      return column;
-    })
-  });
-}
-
-const generateLinesAndRows = (columns: Columns = 0, rows?: Rows) => new Array(columns)
-  .fill(rows >= 0 ? generateLinesAndRows(rows) : 0);
+import { generateLinesAndRows } from './linesAndRows';
 
 const generate = (options: Options): Minefields => {
   const {
-    columns = 8,
-    rows = 8,
+    columns = 12,
+    rows = 12,
     mines = 6,
   } = options;
 
-  let minefield = generateLinesAndRows(columns, rows);
-
-  const positionsCount = columns + rows;
-  if (mines >= positionsCount) {
-    throw new Error(`Mines quantity is equal or greater than ${positionsCount}, please type other value`);
+  if (columns < 12 || rows < 12) {
+    throw new Error(`Invalid rows or columns quantity`);
   }
 
-  minefield = randomMinesPopulate(minefield, mines);
+  if (mines < 6 || mines >= (columns * rows)) {
+    throw new Error('Invalid mines quantity');
+  }
 
-  console.log(minefield);
+  let minefields = generateLinesAndRows(columns, rows);
 
-  return minefield;
+  return minefields;
 };
-
-generate({
-  columns: 4,
-  rows: 4,
-});
-
 
 export {
   generate,
