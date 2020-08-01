@@ -14,6 +14,7 @@
   ],
 
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "types/index.d.ts",
 
   "scripts": {
@@ -24,8 +25,8 @@
     "prepublishOnly": ""
   },
   "files": [
-    "types/",
-    "dist/"
+    "types/**/*.d.ts",
+    "dist/**/*.js"
   ],
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.56",
