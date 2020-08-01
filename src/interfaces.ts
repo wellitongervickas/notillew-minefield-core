@@ -6,5 +6,5 @@ export type Mines = number;
 export interface Options {
   columns: Columns;
   rows: Rows;
-  mines?: Mines;
+  mines: Mines;
 }

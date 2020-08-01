@@ -1,7 +1,7 @@
-import { Minefields, Mines } from './interfaces';
+import { Minefields, Mines, Columns } from './interfaces';
 import { getRandomInteger } from './randomize';
 
-const setRandomMine = (row) => {
+const setRandomMine = (row: Columns[]): Columns[] => {
   const newRow = [...row];
   const index = getRandomInteger(0, row.length);
 
@@ -16,8 +16,11 @@ const setRandomMine = (row) => {
   return newRow;
 }
 
-export const insertRandomMines = (minefields: Minefields, mines: Mines): Minefields => {
-  let newMinefields = [...minefields];
+export const insertRandomMines = (
+  minefields: Minefields,
+  mines: Mines,
+): Minefields => {
+  const newMinefields = [...minefields];
 
   for (let remainingMines = mines; remainingMines > 0; remainingMines--) {
     const index = getRandomInteger(0, newMinefields.length -1);

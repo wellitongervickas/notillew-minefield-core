@@ -1,3 +1,4 @@
+import { verifyPosition } from './verify';
 import {
   Options,
   Minefields,
@@ -10,7 +11,7 @@ const generate = (options: Options): Minefields => {
   const {
     columns = 12,
     rows = 12,
-    mines = 6,
+    mines = 12,
   } = options;
 
   if (columns < 12 || rows < 12) {
