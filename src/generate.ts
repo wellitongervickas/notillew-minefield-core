@@ -1,4 +1,3 @@
-import { verifyPosition } from './verify';
 import {
   Options,
   Minefields,

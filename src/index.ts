@@ -4,6 +4,7 @@ import {
 
 export {
   generateLinesAndRows,
+  updateLinesAndRowsValues,
 } from './linesAndRows';
 
 export {

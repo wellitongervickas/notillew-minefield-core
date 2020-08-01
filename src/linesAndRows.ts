@@ -8,3 +8,5 @@ export const generateLinesAndRows = (
       ? generateLinesAndRows(rows)
       : 0
 );
+
+export const updateLinesAndRowsValues = (minefields: Minefields): Minefields => [];
