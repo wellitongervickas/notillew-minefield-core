@@ -12,11 +12,11 @@
     "game"
   ],
   "main": "dist/index.js",
-  "module": "dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules ./src",
+    "test": "jest tests",
     "pretest": "npm run build",
     "prepublishOnly": "npm run test"
   },
@@ -25,10 +25,10 @@
     "dist/**/*.js"
   ],
   "devDependencies": {
+    "@types/jest": "^26.0.8",
+    "typescript": "^3.9.7",
     "jest": "^26.2.2",
     "ts-node-dev": "^1.0.0-pre.56",
-    "typescript": "^3.9.7",
-    "@types/jest": "^26.0.8",
     "ts-jest": "^26.1.4"
   }
 }
