@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "license": "MIT",
   "description": "A minefield javascript core",
-
   "repository": "git@github.com:wellitongervickas/notillew-minefield-core.git",
   "author": "welliton gervickas <wellitogervickas@gmail.com>",
   "keywords": [
@@ -12,24 +11,24 @@
     "generator",
     "game"
   ],
-
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "types/index.d.ts",
-
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules ./src",
-    "test": "",
-    "pretest": "",
-    "prepublishOnly": ""
+    "pretest": "npm run build",
+    "prepublishOnly": "npm run test"
   },
   "files": [
     "types/**/*.d.ts",
     "dist/**/*.js"
   ],
   "devDependencies": {
+    "jest": "^26.2.2",
     "ts-node-dev": "^1.0.0-pre.56",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "@types/jest": "^26.0.8",
+    "ts-jest": "^26.1.4"
   }
 }
