@@ -1,3 +1,12 @@
-node_modules
-yarn-error.log
-dist
+node_modules/
+dist/
+src/*.js
+
+yarn.lock
+
+.idea
+.vscode
+.DS_Store
+
+*.log*
+

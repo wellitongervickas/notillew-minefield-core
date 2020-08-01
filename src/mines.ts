@@ -1,33 +1,39 @@
-import { Minefields, Mines, Columns } from './interfaces';
-import { getRandomInteger } from './randomize';
+import randomize from './randomize';
 
-const setRandomMine = (
-  row: Columns[],
-): Columns[] => {
-  const newRow = [...row];
-  const index = getRandomInteger(0, row.length);
+export const mines = {
+  isMine: (minefields: Array<number[]>, row: number, column: number): boolean => {
+    try {
+      return minefields[row][column] === -1;
+    } catch (error) {
+      throw new Error('Invalid row or column');
+    }
+  },
 
-  if (newRow[index] === -1) {
-    return setRandomMine(newRow);
+  setMine: (row: Array<number>): Array<number>=> {
+    const newRow = [...row];
+    const index = randomize.integer(0, row.length);
+
+    if (newRow[index] === -1) {
+      return mines.setMine(newRow);
+    }
+
+    if (index < row.length) {
+      newRow[index] = -1
+    }
+
+    return newRow;
+  },
+
+  insertMines: (minefields: Array<number[]>, minesQuantity: number): Array<number[]> => {
+    const newMinefields = [...minefields];
+
+    for (let remainingMines = minesQuantity; remainingMines > 0; remainingMines--) {
+      const index = randomize.integer(0, newMinefields.length);
+      newMinefields[index] = mines.setMine(newMinefields[index])
+    }
+
+    return newMinefields;
   }
+};
 
-  if (index < row.length) {
-    newRow[index] = -1
-  }
-
-  return newRow;
-}
-
-export const insertRandomMines = (
-  minefields: Minefields,
-  mines: Mines,
-): Minefields => {
-  const newMinefields = [...minefields];
-
-  for (let remainingMines = mines; remainingMines > 0; remainingMines--) {
-    const index = getRandomInteger(0, newMinefields.length);
-    newMinefields[index] = setRandomMine(newMinefields[index])
-  }
-
-  return newMinefields;
-}
+export default mines;

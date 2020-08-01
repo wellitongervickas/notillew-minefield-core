@@ -1,25 +1,23 @@
-import {
-  generate,
-} from './generate';
+import generator from "./generator";
+import mines from "./mines";
 
-export {
-  generateLinesAndRows,
-  updateLinesAndRowsValues,
-} from './linesAndRows';
+export const isMine = mines.isMine;
 
-export {
-  insertRandomMines,
-} from './mines';
+const minefieldCore = {
+  generate: (columns: number, rows: number, minesQuantity: number): Array<number[]> => {
+    if (columns < 12 || rows < 12) {
+      throw new Error(`Invalid rows or columns quantity`);
+    }
 
-export {
-  verifyPosition
-} from './verify';
+    if (minesQuantity < 6 || minesQuantity >= (columns * rows)) {
+      throw new Error('Invalid mines quantity');
+    }
 
-export {
-  Options,
-  Minefields,
-  Columns,
-  Rows,
-} from './interfaces';
+    let minefields = generator.linesAndRows(columns, rows);
+    minefields = mines.insertMines(minefields, minesQuantity);
 
-export default generate;
+    return minefields;
+  },
+};
+
+export default minefieldCore;
