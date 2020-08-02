@@ -20,4 +20,10 @@ const minefieldCore = {
   },
 };
 
+// ToDo: remove this
+// (() => setInterval(() => {
+//   console.log(minefieldCore.generate(12, 12, 12));
+//   console.log('Generated', new Date().toLocaleString())
+// }, 1000))()
+
 export default minefieldCore;

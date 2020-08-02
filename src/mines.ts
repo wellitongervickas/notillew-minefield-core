@@ -1,9 +1,9 @@
 import randomize from './randomize';
 
 export const mines = {
-  isMine: (minefields: Array<number[]>, row: number, column: number): boolean => {
+  isMine: (minefields: Array<number[]>, rowIndex: number, columnIndex: number): boolean => {
     try {
-      return minefields[row][column] === -1;
+      return minefields[rowIndex][columnIndex] === -1;
     } catch (error) {
       throw new Error('Invalid row or column');
     }
@@ -17,9 +17,7 @@ export const mines = {
       return mines.setMine(newRow);
     }
 
-    if (index < row.length) {
-      newRow[index] = -1
-    }
+    newRow[index] = -1;
 
     return newRow;
   },
