@@ -2,8 +2,10 @@
 A pure javascript minefield generator 
 
 ## Installation
-> yarn install notillew-minefield-core
+> yarn add notillew-minefield-core
+
 *or*
+
 > npm install notillew-minefield-core
 
 ## Documentation
@@ -13,6 +15,7 @@ This generator exports a minefield array and a object with mines mapping
 ```
 const { minefields } = minefield.generate(12, 12, 12);
 // Output Array[number[]]
+// [[0, -1, 0, 0]]
 
 ```
 
@@ -20,6 +23,7 @@ const { minefields } = minefield.generate(12, 12, 12);
 ```
 const { minesMap } = minefield.generate(12, 12, 12);
 // Output Object { 'index': Array[number] }
+// { '0', [1] }
 
 ```
 ### Properties
