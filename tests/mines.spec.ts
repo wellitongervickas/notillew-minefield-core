@@ -40,26 +40,23 @@ describe('Notillew minefield core', () => {
 
   it('should validate minefield mapper', () => {
     const {
-      map,
+      minesMap,
       minefields,
     } = mines.insertMines([
       [0,0,0,0],
       [0,0,0,0],
+      [0,0,0,0],
+      [0,0,0,0],
     ], 4);
 
-    const firstRowIndex = Object.keys(map)[0];
-    const firstColumnMine = map[firstRowIndex][0];
-
-    const secondRowIndex = Object.keys(map)[1];
-    const secondColumnMine = map[secondRowIndex][0];
+    const rowIndex = Object.keys(minesMap)[0];
+    const columnIndex = minesMap[rowIndex][0];
 
     expect(
-      minefields[firstRowIndex].filter((col: number) => col === -1).length,
-    ).toBe(map[firstRowIndex].length);
+      minefields[rowIndex].filter((col: number) => col === -1).length,
+    ).toBe(minesMap[rowIndex].length);
 
-    expect(minefields[firstRowIndex][firstColumnMine]).toBe(-1);
-    expect(minefields[secondRowIndex][secondColumnMine]).toBe(-1);
-
+    expect(minefields[rowIndex][columnIndex]).toBe(-1);
   });
 
   it('should set mine in only one column', () => {

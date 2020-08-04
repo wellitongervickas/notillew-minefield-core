@@ -19,6 +19,7 @@
     "node_modules",
     "tests",
     "jest.config.js",
-    "types"
+    "types",
+    "coverage"
   ]
 }

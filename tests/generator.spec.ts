@@ -16,6 +16,7 @@ describe('', () => {
       .reduce((count: number, row: Array<number[]>) => count += row.length, 0);
 
     expect(positionsQuantity).toBe(generatedPositionsCount);
+    expect(linesAndRows.every(row => row.length === 24)).toBe(true);
     expect(linesAndRows.length).toBe(rows);
   });
 });

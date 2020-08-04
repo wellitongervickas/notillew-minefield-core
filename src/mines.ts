@@ -2,7 +2,7 @@ import randomize from './randomize';
 
 interface InsertMines {
   minefields: Array<number[]>
-  map: Object;
+  minesMap: Object;
 }
 
 export const mines = {
@@ -29,14 +29,14 @@ export const mines = {
 
   insertMines: (currentMinefields: Array<number[]>, minesQuantity: number): InsertMines => {
     const newMinefields = [...currentMinefields];
-    let map = {};
+    let minesMap = {};
 
     for (let remainingMines = minesQuantity; remainingMines > 0; remainingMines--) {
       const index = randomize.integer(0, newMinefields.length);
 
       newMinefields[index] = mines.setMine(newMinefields[index]);
 
-      map[index] = Object(newMinefields[index])
+      minesMap[index] = Object(newMinefields[index])
         .reduce((indexes: number[], column: number, columnIndex: number) => {
           if (column === -1) {
             indexes.push(columnIndex);
@@ -48,7 +48,7 @@ export const mines = {
 
     return {
       minefields: newMinefields,
-      map,
+      minesMap,
     };
   },
 };
