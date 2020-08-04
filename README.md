@@ -26,7 +26,7 @@ const { minesMap } = minefield.generate(12, 12, 12);
 #### isMine(minefields, rowIndex, colIndex)
 
 | Name | Required | type |
-|--|--|--|--|
+|--|--|--|
 | minefields | true  | Array[number] |
 | rowIndex | true | number |
 | colIndex | true | number |
