@@ -25,15 +25,15 @@ const { minesMap } = minefield.generate(12, 12, 12);
 ### Properties
 #### isMine(minefields, rowIndex, colIndex)
 
-| Name | Required | type 
+| Name | Required | type |
 |--|--|--|--|
 | minefields | true  | Array[number] |
-| rowIndex | true | number
-| colIndex | true | number
+| rowIndex | true | number |
+| colIndex | true | number |
 
 #### generate(columns, rows, mines)
 
-| Name | Required | Min | Max
+| Name | Required | Min | Max |
 |--|--|--|--|
 | columns | true  | 12 | - |
 | rows | true  | 12 | - |
