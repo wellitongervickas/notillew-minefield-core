@@ -1,12 +1,7 @@
-
-// indexAnterior
-// index
-// indexPosterior
-
 export const columns = {
-
-
   numberifyColumns: (minefields: Array<number[]>): Array<number[]> => {
+    // ToDo: Fixe this code approach with recursive method
+
     let newMinefields = [...minefields]
       .map((row, rowIndex) => {
         const newRow = row.map((col, colIndex) => {

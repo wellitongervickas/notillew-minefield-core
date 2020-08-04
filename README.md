@@ -2,9 +2,9 @@
 A pure javascript minefield generator 
 
 ## Installation
-yarn install notillew-minefield-core
+> yarn install notillew-minefield-core
 *or*
-npm install notillew-minefield-core
+> npm install notillew-minefield-core
 
 ## Documentation
 This generator exports a minefield array and a object with mines mapping
@@ -45,11 +45,18 @@ const { minesMap } = minefield.generate(12, 12, 12);
 import React from 'react';
 import { FaBomb } from 'react-icons/fa';
 
-import minefield from 'notillew-minefield-core';
+import minefield, { isMine } from 'notillew-minefield-core';
 import './App.css';
 
 function App() {
   const { minefields } = minefield.generate(12, 12, 12);
+
+  const handleClickArea = (rowIndex, colIndex) => {
+    if (isMine(minefields, rowIndex, colIndex)) {
+      console.log('boom');
+    }
+  };
+
   const getClassName = (number) => {
     switch (number) {
       case -1:
@@ -69,7 +76,10 @@ function App() {
         {minefields.map(rows => (
           <li>
             {rows.map(col => (
-              <div className={getClassName(col)}>
+              <div 
+                onClick={handleClickArea}
+                className={getClassName(col)}
+              >
                 {col === -1 ? <FaBomb color="black" /> : col}
               </div>
             ))}
