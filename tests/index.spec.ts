@@ -10,17 +10,21 @@ describe('Notillew minefield core', () => {
   it('should generate minefield core', () => {
     const rows = 12;
     const columns = 12;
-    const minefield = minefieldCore.generate(columns, rows, 12);
+    const {
+      minefields,
+    } = minefieldCore.generate(columns, rows, 12);
 
-    expect(minefield.length).toBe(rows);
-    expect(minefield.every(row => row.length = columns)).toBe(true);
+    expect(minefields.length).toBe(rows);
+    expect(minefields.every(row => row.length = columns)).toBe(true);
   });
 
   it('should return exactly mines quantity', () => {
     const mines = 12;
-    const minefield = minefieldCore.generate(12, 12, mines);
+    const {
+      minefields,
+    } = minefieldCore.generate(12, 12, mines);
 
-    const minesQuantity = minefield.reduce((count, current) => {
+    const minesQuantity = minefields.reduce((count, current) => {
       count += current.filter(col => col === -1).length;
       return count;
     }, 0)
@@ -28,14 +32,23 @@ describe('Notillew minefield core', () => {
     expect(minesQuantity).toBe(mines);
   });
 
-  it('should return true on mine', () => {
-    const simulatedMinefield = [[0,-1,0,0]];
-    const boom = isMine(simulatedMinefield, 0, 1);
-    expect(boom).toBeTruthy()
+  it('should validate if return minefield mapper', () => {
+    const {
+      minesMap,
+    } = minefieldCore.generate(12, 12, 12);
+
+    expect(Object.keys(minesMap).length > 0).toBe(true);
   });
-  it('should return false when isnt mine', () => {
-    const simulatedMinefield = [[0,-1,0,0]];
-    const who = isMine(simulatedMinefield, 0, 0);
-    expect(who).toBeFalsy();
+
+  it('should return an error message in columns or rows quantity', () => {
+    expect(() => minefieldCore.generate(5, 5, 12)).toThrow('Invalid rows or columns quantity');
+  });
+
+  it('should return an error message in mine quantity', () => {
+    expect(() => minefieldCore.generate(12, 12, 200)).toThrow('Invalid mines quantity');
+  });
+
+  it('should return an error message in mine verifcation', () => {
+    expect(() => isMine([], 0, 2)).toThrow('Invalid row or column');
   });
 });

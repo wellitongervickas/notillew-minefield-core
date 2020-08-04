@@ -18,6 +18,7 @@
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules ./src",
     "test": "jest tests",
     "test:watch": "jest tests --watchAll",
+    "test:coverage": "jest tests --coverage",
     "pretest": "npm run build",
     "prepublishOnly": "npm run test"
   },

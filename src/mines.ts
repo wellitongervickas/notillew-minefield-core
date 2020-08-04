@@ -1,5 +1,10 @@
 import randomize from './randomize';
 
+interface InsertMines {
+  minefields: Array<number[]>
+  map: Object;
+}
+
 export const mines = {
   isMine: (minefields: Array<number[]>, rowIndex: number, columnIndex: number): boolean => {
     try {
@@ -22,16 +27,30 @@ export const mines = {
     return newRow;
   },
 
-  insertMines: (minefields: Array<number[]>, minesQuantity: number): Array<number[]> => {
-    const newMinefields = [...minefields];
+  insertMines: (currentMinefields: Array<number[]>, minesQuantity: number): InsertMines => {
+    const newMinefields = [...currentMinefields];
+    let map = {};
 
     for (let remainingMines = minesQuantity; remainingMines > 0; remainingMines--) {
       const index = randomize.integer(0, newMinefields.length);
-      newMinefields[index] = mines.setMine(newMinefields[index])
+
+      newMinefields[index] = mines.setMine(newMinefields[index]);
+
+      map[index] = Object(newMinefields[index])
+        .reduce((indexes: number[], column: number, columnIndex: number) => {
+          if (column === -1) {
+            indexes.push(columnIndex);
+          }
+
+          return indexes;
+        }, []);
     }
 
-    return newMinefields;
-  }
+    return {
+      minefields: newMinefields,
+      map,
+    };
+  },
 };
 
 export default mines;

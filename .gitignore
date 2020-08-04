@@ -1,6 +1,7 @@
 node_modules/
 dist/
 src/*.js
+coverage/
 
 .idea
 .vscode
