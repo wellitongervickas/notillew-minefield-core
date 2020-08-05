@@ -32,6 +32,4 @@ const minefieldCore = {
   },
 };
 
-minefieldCore.generate(12, 12, 24);
-
 export default minefieldCore;
