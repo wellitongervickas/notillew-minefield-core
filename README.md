@@ -1,5 +1,8 @@
+
 # Notillew Minefield Core
-A javascript minefield generator 
+*A javascript minefield generator* 
+
+![coverage](https://badgen.net/badge/coverage/100/green) ![build passing](https://badgen.net/badge/build/passing/green) ![contributions](https://badgen.net/badge/contributions/welcome/green) ![types](https://badgen.net/badge/types/included/blue)
 
 ## Installation
 > yarn add notillew-minefield-core
@@ -44,7 +47,7 @@ const { minesMap } = minefield.generate(12, 12, 12);
 |--|--|--|--|--|
 | columns | true  | 12 | - | int |
 | rows | true  | 12 | - | int |
-| mines | true  | 6 | columns * rows | int |
+| mines | true  | 6 | less than columns * rows | int |
 
 
 ## React example usage 
