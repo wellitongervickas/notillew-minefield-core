@@ -1,10 +1,9 @@
-import minefieldCore, { isMine } from '../src';
+import minefieldCore from '../src';
 
 describe('Notillew minefield core', () => {
   it('should be defined', () => {
     expect(minefieldCore).toBeDefined();
     expect(minefieldCore.generate).toBeDefined();
-    expect(isMine).toBeDefined();
   });
 
   it('should generate minefield core', () => {
@@ -46,9 +45,5 @@ describe('Notillew minefield core', () => {
 
   it('should return an error message in mine quantity', () => {
     expect(() => minefieldCore.generate(12, 12, 200)).toThrow('Invalid mines quantity');
-  });
-
-  it('should return an error message in mine verifcation', () => {
-    expect(() => isMine([], 0, 2)).toThrow('Invalid row or column');
   });
 });

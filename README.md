@@ -1,5 +1,5 @@
 # Notillew Minefield Core
-A pure javascript minefield generator 
+A javascript minefield generator 
 
 ## Installation
 > yarn add notillew-minefield-core
@@ -9,57 +9,55 @@ A pure javascript minefield generator
 > npm install notillew-minefield-core
 
 ## Documentation
-This generator exports a minefield array and a object with mines mapping
+This minefield generator exports a minefield array and a object with mines mapping
+You can use minesMap to validate if a position is mine.
+
 
 ### Minefields
+
 ```
 const { minefields } = minefield.generate(12, 12, 12);
 // Output Array[number[]]
-// [[0, -1, 0, 0]]
+// [
+//  [2, -1,  3, 1],
+//  [2, -1, -1, 1]
+// ]
 
 ```
 
 ### Minesmap
+
 ```
 const { minesMap } = minefield.generate(12, 12, 12);
 // Output Object { 'index': Array[number] }
-// { '0', [1] }
+// { 
+//  '0', [1], 
+//  '1': [1, 2]
+// }
 
 ```
-### Properties
-#### isMine(minefields, rowIndex, colIndex)
-
-| Name | Required | type |
-|--|--|--|
-| minefields | true  | Array[number] |
-| rowIndex | true | number |
-| colIndex | true | number |
-
-#### generate(columns, rows, mines)
-
-| Name | Required | Min | Max |
-|--|--|--|--|
-| columns | true  | 12 | - |
-| rows | true  | 12 | - |
-| mines | true  | 6| columns * rows |
 
 
-## React usage example
+### Properties Generate(columns, rows, mines)
+
+| Name | Required | Min | Max | Type | 
+|--|--|--|--|--|
+| columns | true  | 12 | - | int |
+| rows | true  | 12 | - | int |
+| mines | true  | 6 | columns * rows | int |
+
+
+## React example usage 
+
 ```
 import React from 'react';
 import { FaBomb } from 'react-icons/fa';
 
-import minefield, { isMine } from 'notillew-minefield-core';
+import minefield from 'notillew-minefield-core';
 import './App.css';
 
 function App() {
   const { minefields } = minefield.generate(12, 12, 12);
-
-  const handleClickArea = (rowIndex, colIndex) => {
-    if (isMine(minefields, rowIndex, colIndex)) {
-      console.log('boom');
-    }
-  };
 
   const getClassName = (number) => {
     switch (number) {
@@ -76,13 +74,12 @@ function App() {
   }
   return (
     <div className="App">
-      <ul>
+      <ul className="minefields">
         {minefields.map(rows => (
-          <li>
+          <li className="row">
             {rows.map(col => (
               <div 
-                onClick={handleClickArea}
-                className={getClassName(col)}
+                className={`col-${getClassName(col)}`}
               >
                 {col === -1 ? <FaBomb color="black" /> : col}
               </div>

@@ -2,8 +2,6 @@ import { columns as columnsManager }  from './columns';
 import generator from "./generator";
 import mines from "./mines";
 
-export const isMine = mines.isMine;
-
 
 interface MinefieldCore {
   minefields: Array<number[]>,
@@ -21,7 +19,7 @@ const minefieldCore = {
     }
 
     const { minefields: tempMinefields, minesMap } = mines.insertMines(
-      generator.linesAndRows(columns, rows),
+      generator.columnsAndRows(columns, rows),
       minesQuantity,
     );
 

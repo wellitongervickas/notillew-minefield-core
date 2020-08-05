@@ -3,7 +3,7 @@ import generator from '../src/generator';
 describe('', () => {
   it('should be defined', () => {
     expect(generator).toBeDefined();
-    expect(generator.linesAndRows).toBeDefined();
+    expect(generator.columnsAndRows).toBeDefined();
   });
 
   it('should generate a list with rows and colums', () => {
@@ -11,7 +11,7 @@ describe('', () => {
     const columns = 24;
     const generatedPositionsCount = rows * columns;
 
-    const linesAndRows = generator.linesAndRows(rows, columns);
+    const linesAndRows = generator.columnsAndRows(rows, columns);
     const positionsQuantity = Object(linesAndRows)
       .reduce((count: number, row: Array<number[]>) => count += row.length, 0);
 

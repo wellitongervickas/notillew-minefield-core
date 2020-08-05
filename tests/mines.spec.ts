@@ -7,18 +7,6 @@ describe('Notillew minefield core', () => {
     expect(mines.setMine).toBeDefined();
   });
 
-  it('should return true on mine', () => {
-    const simulatedMinefield = [[0,-1,0,0]];
-    const boom = mines.isMine(simulatedMinefield, 0, 1);
-    expect(boom).toBeTruthy();
-  });
-
-  it('should return false when isnt mine', () => {
-    const simulatedMinefield = [[0,-1,0,0]];
-    const pass = mines.isMine(simulatedMinefield, 0, 0);
-    expect(pass).toBeFalsy();
-  });
-
   it('should insert mines in minefield an count to be equal', () => {
     const minesQuantity = 4;
 

@@ -1,7 +1,7 @@
 export const generator = {
-  linesAndRows: (columns: number, rows?: number): Array<number[]> => new Array(columns)
+  columnsAndRows: (columns: number, rows?: number): Array<number[]> => new Array(columns)
     .fill(rows >= 0
-      ? generator.linesAndRows(rows)
+      ? generator.columnsAndRows(rows)
       : 0),
 }
 

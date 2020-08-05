@@ -1,48 +1,40 @@
 export const columns = {
-  numberifyColumns: (minefields: Array<number[]>): Array<number[]> => {
-    // ToDo: Fixe this code approach with recursive method
+  verifyNeighboors: (row: Array<number>, index: number, skipCurrent?: boolean): number => {
+    let count = 0;
 
+    if (row) {
+      const mineBefore = row[index -1] === -1;
+      const mineCurrent = row[index] === -1;
+      const mineAfter = row[index + 1] === -1;
+
+      if (mineBefore) {
+        count += 1;
+      }
+
+      if (mineCurrent && !skipCurrent) {
+        count += 1;
+      }
+
+      if (mineAfter) {
+        count += 1;
+      }
+    }
+
+    return count;
+  },
+  numberifyColumns: (minefields: Array<number[]>): Array<number[]> => {
     let newMinefields = [...minefields]
       .map((row, rowIndex) => {
         const newRow = row.map((col, colIndex) => {
           if (col !== -1) {
-            const rowBefore = minefields[rowIndex -1];
-            const rowAfter = minefields[rowIndex + 1];
+            // row before
+            col += columns.verifyNeighboors(minefields[rowIndex -1], colIndex);
 
-            const colIndexBefore = row[colIndex -1] === -1;
-            const colIndexAfter = row[colIndex + 1] === -1;
+            // Current row
+            col += columns.verifyNeighboors(row, colIndex, true);
 
-            if (colIndexBefore) {
-              col += 1;
-            }
-
-            if (colIndexAfter) {
-              col += 1;
-            }
-
-            if (rowBefore && rowBefore[colIndex - 1] === -1) {
-              col += 1;
-            }
-
-            if (rowBefore && rowBefore[colIndex] === -1) {
-              col += 1;
-            }
-
-            if (rowBefore && rowBefore[colIndex + 1] === -1) {
-              col += 1;
-            }
-
-            if (rowAfter && rowAfter[colIndex - 1] === -1) {
-              col += 1;
-            }
-
-            if (rowAfter && rowAfter[colIndex] === -1) {
-              col += 1;
-            }
-
-            if (rowAfter && rowAfter[colIndex + 1] === -1) {
-              col += 1;
-            }
+            // row after
+            col += columns.verifyNeighboors(minefields[rowIndex +1], colIndex);
           }
 
           return col;

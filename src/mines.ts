@@ -6,37 +6,29 @@ interface InsertMines {
 }
 
 export const mines = {
-  isMine: (minefields: Array<number[]>, rowIndex: number, columnIndex: number): boolean => {
-    try {
-      return minefields[rowIndex][columnIndex] === -1;
-    } catch (error) {
-      throw new Error('Invalid row or column');
-    }
-  },
+  setMine: (currentRow: Array<number>): Array<number>=> {
+    const row = [...currentRow];
+    const index = randomize.integer(0, currentRow.length);
 
-  setMine: (row: Array<number>): Array<number>=> {
-    const newRow = [...row];
-    const index = randomize.integer(0, row.length);
-
-    if (newRow[index] === -1) {
-      return mines.setMine(newRow);
+    if (row[index] === -1) {
+      return mines.setMine(row);
     }
 
-    newRow[index] = -1;
+    row[index] = -1;
 
-    return newRow;
+    return row;
   },
 
   insertMines: (currentMinefields: Array<number[]>, minesQuantity: number): InsertMines => {
-    const newMinefields = [...currentMinefields];
+    const minefields = [...currentMinefields];
     let minesMap = {};
 
     for (let remainingMines = minesQuantity; remainingMines > 0; remainingMines--) {
-      const index = randomize.integer(0, newMinefields.length);
+      const index = randomize.integer(0, minefields.length);
 
-      newMinefields[index] = mines.setMine(newMinefields[index]);
+      minefields[index] = mines.setMine(minefields[index]);
 
-      minesMap[index] = Object(newMinefields[index])
+      minesMap[index] = Object(minefields[index])
         .reduce((indexes: number[], column: number, columnIndex: number) => {
           if (column === -1) {
             indexes.push(columnIndex);
@@ -47,7 +39,7 @@ export const mines = {
     }
 
     return {
-      minefields: newMinefields,
+      minefields,
       minesMap,
     };
   },
