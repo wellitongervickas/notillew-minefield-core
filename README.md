@@ -1,5 +1,5 @@
 
-# Notillew Minefield Core
+# Notillew Minefield Core (minesweeper)
 *A javascript minefield generator* 
 
 ![coverage](https://badgen.net/badge/coverage/100/green) ![build passing](https://badgen.net/badge/build/passing/green) ![contributions](https://badgen.net/badge/contributions/welcome/green) ![types](https://badgen.net/badge/types/included/blue)
